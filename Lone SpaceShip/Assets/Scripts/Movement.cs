@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    // Variables
+
+    [SerializeField] float rocketThrustSpeed = 20f;
+    // Cached Reference
+    Rigidbody rb;
+
+
     void Start()
     {
-        
+       rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         ProcessThrust();
@@ -33,7 +40,7 @@ public class Movement : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("Pressed SPACE - Thrusting");
+            rb.AddRelativeForce(Vector3.up * rocketThrustSpeed * Time.deltaTime);
         }
     }
 }
