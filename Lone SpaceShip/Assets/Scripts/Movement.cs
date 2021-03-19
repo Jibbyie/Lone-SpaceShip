@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     // Variables
 
     [SerializeField] float rocketThrustSpeed = 20f;
+    [SerializeField] float rocketRotationSpeed = 20f;
     // Cached Reference
     Rigidbody rb;
 
@@ -24,23 +25,28 @@ public class Movement : MonoBehaviour
         ProcessRotation();
     }
 
-    private  void ProcessRotation()
-    {
-        if (Input.GetKey(KeyCode.A))
-        {
-            Debug.Log("Pressed A - Rotating Left");
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            Debug.Log("Pressed D - Rotating Right");
-        }
-    }
-
     private void ProcessThrust()
     {
-        if(Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             rb.AddRelativeForce(Vector3.up * rocketThrustSpeed * Time.deltaTime);
         }
     }
+    private  void ProcessRotation()
+    {
+        if (Input.GetKey(KeyCode.A))
+        {
+            ApplyRotation(rocketRotationSpeed);
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            ApplyRotation(-rocketRotationSpeed);
+        }
+    }
+
+    private void ApplyRotation(float rotationThisFrame)
+    {
+        transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
+    }
+
 }

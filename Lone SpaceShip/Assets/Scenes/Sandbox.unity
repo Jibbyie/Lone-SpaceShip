@@ -557,6 +557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rocketThrustSpeed: 1000
+  rocketRotationSpeed: 200
 --- !u!54 &8081895588712385835
 Rigidbody:
   m_ObjectHideFlags: 0
