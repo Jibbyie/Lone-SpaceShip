@@ -11,11 +11,14 @@ public class Movement : MonoBehaviour
     [SerializeField] float rocketRotationSpeed = 20f;
     // Cached Reference
     Rigidbody rb;
+    AudioSource rocketThrust;
+ 
 
 
     void Start()
     {
        rb = GetComponent<Rigidbody>();
+       rocketThrust = GetComponent<AudioSource>();
     }
 
 
@@ -30,6 +33,14 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             rb.AddRelativeForce(Vector3.up * rocketThrustSpeed * Time.deltaTime);
+            if (!rocketThrust.isPlaying)
+            {
+                rocketThrust.Play();
+            } 
+            else
+            {
+                rocketThrust.Stop();
+            }
         }
     }
     private  void ProcessRotation()

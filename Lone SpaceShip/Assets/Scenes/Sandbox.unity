@@ -367,6 +367,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3463885685712412938, guid: 989a2894cb970c6409c2b7547ee53327, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463885685712412938, guid: 989a2894cb970c6409c2b7547ee53327, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e8efa6777f874d94fa7c02edb7419b22, type: 3}
+    - target: {fileID: 3463885685712412938, guid: 989a2894cb970c6409c2b7547ee53327, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3463885685738943648, guid: 989a2894cb970c6409c2b7547ee53327, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -410,10 +422,6 @@ PrefabInstance:
     - target: {fileID: 3463885685738943648, guid: 989a2894cb970c6409c2b7547ee53327, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3463885685738943649, guid: 989a2894cb970c6409c2b7547ee53327, type: 3}
-      propertyPath: m_Constraints
-      value: 56
       objectReference: {fileID: 0}
     - target: {fileID: 3463885685738943659, guid: 989a2894cb970c6409c2b7547ee53327, type: 3}
       propertyPath: m_Name
