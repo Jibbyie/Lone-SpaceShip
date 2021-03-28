@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Friendly
   - Sphere
+  - Fuel
   layers:
   - Default
   - TransparentFX
