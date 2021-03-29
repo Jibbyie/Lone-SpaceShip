@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
     // Inspector Variables
-    [SerializeField] float invokeDelay = 2f;
+    [SerializeField] float invokeDelay = 1f;
 
     //Cached References
 
@@ -28,7 +28,7 @@ public class CollisionHandler : MonoBehaviour
                 Debug.Log("Sorry, you gotta watch out next time!");
                 break;
         }
-
+    }
         void ReloadLevel()
         {
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -48,9 +48,7 @@ public class CollisionHandler : MonoBehaviour
 
             SceneManager.LoadScene(nextSceneIndex);
         }
-
-    }
-
+    
     void StartCrashSequence()
     {
         GetComponent<Movement>().enabled = false;
