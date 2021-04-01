@@ -9,16 +9,19 @@ public class Movement : MonoBehaviour
 
     [SerializeField] float rocketThrustSpeed = 20f;
     [SerializeField] float rocketRotationSpeed = 20f;
+    [SerializeField] AudioClip mainEngine;
+
+
     // Cached Reference
     Rigidbody rb;
-    AudioSource rocketThrust;
+    AudioSource audioSource;
  
 
 
     void Start()
     {
        rb = GetComponent<Rigidbody>();
-       rocketThrust = GetComponent<AudioSource>();
+       audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -33,13 +36,13 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             rb.AddRelativeForce(Vector3.up * rocketThrustSpeed * Time.deltaTime);
-            if (!rocketThrust.isPlaying)
+            if (!audioSource.isPlaying)
             {
-                rocketThrust.Play();
+                audioSource.PlayOneShot(mainEngine);
             } 
             else
             {
-                rocketThrust.Stop();
+                audioSource.Stop();
             }
         }
     }
