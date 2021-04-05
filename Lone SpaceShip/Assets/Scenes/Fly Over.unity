@@ -365,11 +365,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3463885685712412938, guid: 989a2894cb970c6409c2b7547ee53327, type: 3}
       propertyPath: Mute
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3463885685712412938, guid: 989a2894cb970c6409c2b7547ee53327, type: 3}
-      propertyPath: m_audioClip
-      value: 
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3463885685738943648, guid: 989a2894cb970c6409c2b7547ee53327, type: 3}
       propertyPath: m_RootOrder
@@ -419,10 +415,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocket
       objectReference: {fileID: 0}
-    - target: {fileID: 3463885685738943660, guid: 989a2894cb970c6409c2b7547ee53327, type: 3}
-      propertyPath: mainEngine
-      value: 
-      objectReference: {fileID: 8300000, guid: 4366c730ec1f0204194e06e5359d4a74, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 989a2894cb970c6409c2b7547ee53327, type: 3}
 --- !u!1001 &4213740135262339004
