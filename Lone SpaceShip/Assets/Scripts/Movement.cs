@@ -10,6 +10,9 @@ public class Movement : MonoBehaviour
     [SerializeField] float rocketThrustSpeed = 20f;
     [SerializeField] float rocketRotationSpeed = 20f;
     [SerializeField] AudioClip mainEngine;
+    [SerializeField] ParticleSystem leftThrusterParticles;
+    [SerializeField] ParticleSystem rightThrusterParticles;
+    [SerializeField] ParticleSystem rocketJetParticles;
 
 
     // Cached Reference
@@ -39,10 +42,20 @@ public class Movement : MonoBehaviour
             if (!audioSource.isPlaying)
             {
                 audioSource.PlayOneShot(mainEngine);
-            } 
+            }
             else
             {
                 audioSource.Stop();
+            }
+
+            if (!rocketJetParticles.isPlaying)
+            {
+                Debug.Log("I am playing");
+                rocketJetParticles.Play();
+            }
+            else
+            {
+                rocketJetParticles.Stop();
             }
         }
     }
@@ -51,10 +64,23 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             ApplyRotation(rocketRotationSpeed);
+            if (!rightThrusterParticles.isPlaying)
+            {
+                rightThrusterParticles.Play();
+            }
         }
         else if (Input.GetKey(KeyCode.D))
         {
             ApplyRotation(-rocketRotationSpeed);
+            if (!leftThrusterParticles.isPlaying)
+            {
+                leftThrusterParticles.Play();
+            }
+        }
+        else
+        {
+            rightThrusterParticles.Stop();
+            leftThrusterParticles.Stop();
         }
     }
 
