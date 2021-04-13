@@ -18,8 +18,6 @@ public class Movement : MonoBehaviour
     // Cached Reference
     Rigidbody rb;
     AudioSource audioSource;
- 
-
 
     void Start()
     {
@@ -34,54 +32,76 @@ public class Movement : MonoBehaviour
         ProcessRotation();
     }
 
-    private void ProcessThrust()
+    void ProcessThrust()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rb.AddRelativeForce(Vector3.up * rocketThrustSpeed * Time.deltaTime);
-            if (!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(mainEngine);
-            }
-            else
-            {
-                audioSource.Stop();
-            }
-
-            if (!rocketJetParticles.isPlaying)
-            {
-                Debug.Log("I am playing");
-                rocketJetParticles.Play();
-            }
-            else
-            {
-                rocketJetParticles.Stop();
-            }
-        }
-    }
-    private  void ProcessRotation()
-    {
-        if (Input.GetKey(KeyCode.A))
-        {
-            ApplyRotation(rocketRotationSpeed);
-            if (!rightThrusterParticles.isPlaying)
-            {
-                rightThrusterParticles.Play();
-            }
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            ApplyRotation(-rocketRotationSpeed);
-            if (!leftThrusterParticles.isPlaying)
-            {
-                leftThrusterParticles.Play();
-            }
+            StartThrusting();
         }
         else
         {
-            rightThrusterParticles.Stop();
-            leftThrusterParticles.Stop();
+            StopThrusting();
         }
+    }
+
+    void ProcessRotation()
+    {
+        if (Input.GetKey(KeyCode.A))
+        {
+            RotateLeft();
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            RotateRight();
+        }
+        else
+        {
+            StopRotating();
+        }
+    }
+
+    void StartThrusting()
+    {
+        rb.AddRelativeForce(Vector3.up * rocketThrustSpeed * Time.deltaTime);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(mainEngine);
+        }
+        if (!rocketJetParticles.isPlaying)
+        {
+            Debug.Log("I am playing");
+            rocketJetParticles.Play();
+        }
+    }
+
+    void StopThrusting()
+    {
+        rocketJetParticles.Stop();
+        audioSource.Stop();
+    }
+
+    void RotateLeft()
+    {
+        ApplyRotation(rocketRotationSpeed);
+        if (!rightThrusterParticles.isPlaying)
+        {
+            rightThrusterParticles.Play();
+        }
+    }
+
+    void RotateRight()
+    {
+        ApplyRotation(-rocketRotationSpeed);
+        if (!leftThrusterParticles.isPlaying)
+        {
+            leftThrusterParticles.Play();
+        }
+    }
+
+    void StopRotating()
+    {
+        rightThrusterParticles.Stop();
+        leftThrusterParticles.Stop();
     }
 
     private void ApplyRotation(float rotationThisFrame)
