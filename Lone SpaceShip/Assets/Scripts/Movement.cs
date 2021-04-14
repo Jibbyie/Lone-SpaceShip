@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -18,11 +19,13 @@ public class Movement : MonoBehaviour
     // Cached Reference
     Rigidbody rb;
     AudioSource audioSource;
+    Collider rC;
 
     void Start()
     {
        rb = GetComponent<Rigidbody>();
        audioSource = GetComponent<AudioSource>();
+       rC = GetComponent<Collider>();
     }
 
 
@@ -30,6 +33,7 @@ public class Movement : MonoBehaviour
     {
         ProcessThrust();
         ProcessRotation();
+        LevelSkipDebugKey();
     }
 
     void ProcessThrust()
@@ -60,6 +64,11 @@ public class Movement : MonoBehaviour
         }
     }
 
+    void LevelSkipDebugKey()
+    {
+        SkipCurrentLevel();
+    }
+
     void StartThrusting()
     {
         rb.AddRelativeForce(Vector3.up * rocketThrustSpeed * Time.deltaTime);
@@ -69,7 +78,6 @@ public class Movement : MonoBehaviour
         }
         if (!rocketJetParticles.isPlaying)
         {
-            Debug.Log("I am playing");
             rocketJetParticles.Play();
         }
     }
@@ -102,6 +110,22 @@ public class Movement : MonoBehaviour
     {
         rightThrusterParticles.Stop();
         leftThrusterParticles.Stop();
+    }
+
+    void SkipCurrentLevel()
+    {
+        if (Input.GetKey(KeyCode.L))
+        {
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+            int nextSceneIndex = currentSceneIndex + 1;
+            if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
+            {
+                nextSceneIndex = 0;
+            }
+
+            SceneManager.LoadScene(nextSceneIndex);
+        }
     }
 
     private void ApplyRotation(float rotationThisFrame)

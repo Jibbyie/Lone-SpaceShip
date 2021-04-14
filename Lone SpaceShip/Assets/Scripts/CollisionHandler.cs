@@ -20,13 +20,17 @@ public class CollisionHandler : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-    }
+    }   
 
     void OnCollisionEnter(Collision collision)
     {
         if (isTransitioning)
         {
             return;
+        }
+        if (Input.GetKey(KeyCode.C)) // Debug Key
+        {
+            return; // If C is being held, all collision switch events will be disabled
         }
 
         switch (collision.gameObject.tag)
